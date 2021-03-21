@@ -1,0 +1,4 @@
+{
+    "root": true,
+    "extends": ["@sveltejs", "plugin:prettier/recommended"]
+}
