@@ -10,8 +10,8 @@
     let meridiano;
     let datosModal;
     let mostrar = false;
-    let on = true;
-    let clase = 'toggle-btn toggle-btn-on';
+    let on = false;
+    let clase = '';//'toggle-btn toggle-btn-on';
 
     /*function getIP(){
         //let ip = getIP();
@@ -34,11 +34,7 @@
         console.log('DW', datosWeather);
     }
 
-    function handleChange() {
-        on = !on;
-        console.log('cHoursSecond', on);
-        datosWeather = { ...datosWeather, on };
-    }
+
 
     $: if (datosWeather) {
         meridiano = getMeridiano(datosWeather.date, datosWeather.current_time);
@@ -47,6 +43,11 @@
     }
 
     $: clase = on ? 'toggle-btn toggle-btn-on' : 'toggle-btn toggle-btn-off';
+
+
+    $:{
+        console.log('ON ',on);
+    }
 
     onMount(getCurrent);
 </script>
@@ -69,8 +70,8 @@
         <input
             class="toggle-input"
             type="checkbox"
-            checked={on}
-            on:change={handleChange}
+            bind:checked={on}
+            on:change={()=>{datosWeather = { ...datosWeather, on }}}
         />
         <span class={clase} />
     </div>
@@ -84,10 +85,6 @@
 </div>
 
 <style>
-    body {
-        font-family: HelveticaNeue;
-    }
-
     .main {
         height: 100%;
         display: flex;
@@ -132,7 +129,7 @@
     .circle-button img{
        height: 60px;
     }
-    /*
+
         span {
   box-sizing: initial;
   display: inline-block;
@@ -193,5 +190,5 @@
   position: absolute;
   width: 1px;
   white-space: nowrap;
-}*/
+}
 </style>
