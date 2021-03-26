@@ -1,0 +1,47 @@
+<svg id="Light_FAB_3._Mini_Resting" data-name="Light 🌕/ FAB / 3. Mini/Resting" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="98" height="79" viewBox="0 0 98 79">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #ebdb1d;
+      }
+
+      .cls-4 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-5 {
+        clip-path: url(#clip-path-2);
+      }
+
+      .cls-6 {
+        fill: rgba(255,255,255,0);
+      }
+    </style>
+    <clipPath id="clip-path">
+      <circle id="FAB_Mask" data-name="FAB Mask" class="cls-3" cx="39.5" cy="39.5" r="39.5" transform="translate(-19)"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <circle id="FAB_Mask-2" data-name="FAB Mask" class="cls-1" cx="39.5" cy="39.5" r="39.5"/>
+    </clipPath>
+  </defs>
+  <g id="Fill" class="cls-4" transform="translate(19)">
+    <path id="_FAB_Color" data-name="🎨 FAB Color" class="cls-3" d="M0,0H79V79H0Z" transform="translate(-19)"/>
+  </g>
+  <g id="State" class="cls-5" transform="translate(19)">
+    <g id="States_Light_Primary_Container" data-name="States/Light 🌕/Primary Container">
+      <rect id="States_Light_Primary_Container_100_Overlay" data-name="States/Light 🌕/Primary Container 100%/Overlay" class="cls-6" width="39" height="39" rx="4"/>
+    </g>
+  </g>
+  <g id="icon_content_add_24px" data-name="icon/content/add_24px" transform="translate(14 14)">
+    <rect id="Boundary" class="cls-2" width="51" height="51"/>
+    <path id="_Color" data-name=" ↳Color" class="cls-1" d="M41,23.429H23.429V41H17.571V23.429H0V17.571H17.571V0h5.857V17.571H41Z" transform="translate(5 5)"/>
+  </g>
+</svg>

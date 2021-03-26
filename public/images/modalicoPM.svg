@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="424" height="663" viewBox="0 0 424 663">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        stroke: #707070;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        fill: #d9d9d9;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_9" data-name="Rectangle 9" class="cls-1" width="424" height="663" transform="translate(426 212)"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_2" data-name="Mask Group 2" class="cls-2" transform="translate(-426 -212)">
+    <path id="Icon_awesome-moon" data-name="Icon awesome-moon" class="cls-3" d="M285.992,568.158A283.533,283.533,0,0,0,506.66,462.969c7.843-9.663-.709-23.781-12.83-21.472C356,467.745,229.435,362.07,229.435,222.94A222.417,222.417,0,0,1,342.065,29.418C352.814,23.3,350.111,7.005,337.9,4.749A286.469,286.469,0,0,0,285.992,0C129.184,0,1.913,127.071,1.913,284.079,1.913,440.887,128.984,568.158,285.992,568.158Z" transform="translate(303.587 255.921)"/>
+  </g>
+</svg>

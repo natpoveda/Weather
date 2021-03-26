@@ -1,15 +1,15 @@
 export function getMeridiano(fecha, hora) {
-    const now = new Date(`${fecha} ${hora}`);
-    const mer = now.getHours < 12 ? 'AM' : 'PM';
+    const now = new Date(fecha + ' ' + hora);
+    const mer = now.getHours() < 12 ? 'AM' : 'PM';
     return mer;
 }
 
-export function getHora(fecha, hora) {
+export function getHora(fecha, hora, on) {
     const now = new Date(`${fecha} ${hora}`);
     const options = {
         hour: 'numeric',
         minute: 'numeric',
-        hour12: false,
+        hour12: on,
     };
     return new Intl.DateTimeFormat('en-US', options).format(now);
 }
@@ -52,22 +52,24 @@ export function getModalData(meridiano, datos) {
         console.log('getEventoModal1', meridiano);
         return {
             meridiano,
-            hora: getHora(datos.date, datos.current_time),
-            evento: datos.sunrise,
-            puesta_astro: datos.sunset,
-            med_astro: datos.solar_noon,
-            sal_astro: datos.moonrise,
+            hora: getHora(datos.date, datos.current_time, datos.on),
+            evento: getHora(datos.date, datos.sunrise, datos.on),
+            puesta_astro: getHora(datos.date, datos.sunset, datos.on),
+            med_astro: getHora(datos.date, datos.solar_noon, datos.on),
+            sal_astro: getHora(datos.date, datos.moonrise, datos.on),
+            on: datos.on,
         };
     } else {
         console.log('getEventoModal2', meridiano);
         //Luna
         return {
             meridiano,
-            hora: getHora(datos.date, datos.current_time),
-            evento: datos.sunrise,
-            puesta_astro: datos.moonset,
-            med_astro: datos.moonrise,
-            sal_astro: datos.sunrise,
+            hora: getHora(datos.date, datos.current_time, datos.on),
+            evento: getHora(datos.date, datos.sunrise, datos.on),
+            puesta_astro: getHora(datos.date, datos.moonset, datos.on),
+            med_astro: getHora(datos.date, datos.moonrise, datos.on),
+            sal_astro: getHora(datos.date, datos.sunrise, datos.on),
+            on: datos.on,
         };
     }
 }
@@ -112,4 +114,19 @@ export function superFetch(url) {
                 reject(error);
             });
     });
+}
+
+export function generateLocate(datos) {
+    if (datos && datos.tipo) {
+        switch (datos.tipo) {
+            case 'inicial':
+                return datos.location.city + ', ' + datos.location.country_name;
+            case 'country':
+                return datos.location.country;
+            case 'city':
+                return datos.texto + ', ' + datos.location.country;
+            default:
+                break;
+        }
+    }
 }
