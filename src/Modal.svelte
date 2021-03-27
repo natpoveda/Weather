@@ -47,7 +47,7 @@
                 dispatch('closeModal');
             }}
         >
-            X
+            <img src="images/close.svg" alt="close" />
         </div>
     </div>
 </div>
@@ -62,6 +62,7 @@
         left: 0;
         top: 0;
         overflow: auto;
+        will-change: transform, opacity;
     }
     .modal-content {
         width: 50%;
@@ -78,6 +79,7 @@
         font-size: 25px;
         display: flex;
         justify-content: space-between;
+
     }
 
     .icon-modal {

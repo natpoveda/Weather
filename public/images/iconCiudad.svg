@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="148" height="156.222" viewBox="0 0 148 156.222">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <path id="Icon_material-location-city" data-name="Icon material-location-city" class="cls-1" d="M103.167,77V27.667L78.5,3,53.833,27.667V44.111H4.5V159.222h148V77ZM37.389,142.778H20.944V126.333H37.389Zm0-32.889H20.944V93.444H37.389Zm0-32.889H20.944V60.556H37.389Zm49.333,65.778H70.278V126.333H86.722Zm0-32.889H70.278V93.444H86.722Zm0-32.889H70.278V60.556H86.722Zm0-32.889H70.278V27.667H86.722Zm49.333,98.667H119.611V126.333h16.444Zm0-32.889H119.611V93.444h16.444Z" transform="translate(-4.5 -3)"/>
+</svg>

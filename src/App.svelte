@@ -11,49 +11,47 @@
     let datosModal;
     let mostrar = false;
     let on = false;
-    let clase = '';//'toggle-btn toggle-btn-on';
-
-    /*function getIP(){
-        //let ip = getIP();
-        superFetch('https://api.ipgeolocation.io/getip').then(getCurrent);
-    }*/
+    let value = '';
+    let tipo = 'inicial';
+    let valores;
+    let texto;
 
     function getCurrent() {
-        superFetch(
-            `https://api.ipgeolocation.io/astronomy?apiKey=${API_KEY}`
-        ).then(getDatos);
+        value = localStorage.getItem('valueText');
+        valores = JSON.parse(value);
+        texto = valores.texto;
+        console.log('VAL ', valores);
+        if (value != null && value != '') {
+            tipo = valores.tipo;
+            superFetch(
+                `https://api.ipgeolocation.io/astronomy?apiKey=${API_KEY}&location=${texto}`
+            ).then(getDatos);
+        } else {
+            superFetch(
+                `https://api.ipgeolocation.io/astronomy?apiKey=${API_KEY}`
+            ).then(getDatos);
+        }
     }
 
     function getDatos(data) {
-        datosWeather = { ...data, tipo: 'inicial', on };
-        console.log('DAToS', datosWeather);
+        console.log('TIPO', tipo);
+        datosWeather = { ...data, tipo, on, texto };
     }
 
     function handleData(event) {
         datosWeather = { ...event.detail, on };
-        console.log('DW', datosWeather);
     }
-
-
 
     $: if (datosWeather) {
         meridiano = getMeridiano(datosWeather.date, datosWeather.current_time);
         datosModal = getModalData(meridiano, datosWeather);
-        console.log('datModal', datosModal);
-    }
-
-    $: clase = on ? 'toggle-btn toggle-btn-on' : 'toggle-btn toggle-btn-off';
-
-
-    $:{
-        console.log('ON ',on);
     }
 
     onMount(getCurrent);
 </script>
 
 <div class="main mview{meridiano}">
-    <Search on:searchMode={handleData} />
+    <Search on:searchMode={handleData} {valores} />
     <div class="card-weather">
         <Weather datosWe={datosWeather} />
 
@@ -66,14 +64,21 @@
             <img src="images/mas{meridiano}.svg" alt={meridiano} />
         </div>
     </div>
-    <div class="toggle-switch" tabindex="0">
-        <input
-            class="toggle-input"
-            type="checkbox"
-            bind:checked={on}
-            on:change={()=>{datosWeather = { ...datosWeather, on }}}
-        />
-        <span class={clase} />
+
+    <div class="toggle-switch">
+        <p>24 hrs</p>
+        <label class="switch">
+            <input
+                class="toggle-input"
+                type="checkbox"
+                bind:checked={on}
+                on:change={() => {
+                    datosWeather = { ...datosWeather, on };
+                }}
+            />
+            <span class="slider round" />
+        </label>
+        <p>12 hrs</p>
     </div>
     <Modal
         datosMod={datosModal}
@@ -89,7 +94,7 @@
         height: 100%;
         display: flex;
         justify-content: space-around;
-        align-items: center;
+        font-family: Arial, Helvetica, sans-serif;
     }
 
     .mviewAM {
@@ -110,6 +115,9 @@
 
     .toggle-switch {
         width: 20%;
+        display: flex;
+        margin: 20px;
+        font-size: 20px;
     }
 
     .mviewPM .info-evento span {
@@ -123,72 +131,70 @@
     }
 
     .circle-button {
-       margin-top: 10px;
+        margin-top: 10px;
     }
 
-    .circle-button img{
-       height: 60px;
+    .circle-button img {
+        height: 60px;
     }
 
-        span {
-  box-sizing: initial;
-  display: inline-block;
-  outline: 0;
-  width: 8em;
-  height: 4em;
-  position: relative;
-  cursor: pointer;
-  user-select: none;
-  background: #fbfbfb;
-  border-radius: 4em;
-  padding: 4px;
-  transition: all 0.4s ease;
-  border: 2px solid #e8eae9;
-}
-.toggle-input:focus + .toggle-btn::after,
-.toggle-btn:active::after {
-  box-sizing: initial;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08),
-    inset 0px 0px 0px 3px #9c9c9c;
-}
-.toggle-btn::after {
-  left: 0;
-  position: relative;
-  display: block;
-  content: "";
-  width: 50%;
-  height: 100%;
-  border-radius: 4em;
-  background: #fbfbfb;
-  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
-    padding 0.3s ease, margin 0.3s ease;
-  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
-}
-.toggle-btn.toggle-btn-on::after {
-  left: 50%;
-}
-.toggle-btn.toggle-btn-on {
-  background: #86d993;
-}
-.toggle-btn.toggle-btn-on:active {
-  box-shadow: none;
-}
-.toggle-btn.toggle-btn-on:active::after {
-  margin-left: -1.6em;
-}
-.toggle-btn:active::after {
-  padding-right: 1.6em;
-}
-.toggle-input {
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
 
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  white-space: nowrap;
-}
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: '';
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+    }
+
+    input:checked + .slider {
+        background-color: #2196f3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196f3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
 </style>

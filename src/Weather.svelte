@@ -56,6 +56,7 @@
     .card img {
         width: 50%;
         height: 50%;
+        margin-top: 20px;
     }
 
     .info-hora {
