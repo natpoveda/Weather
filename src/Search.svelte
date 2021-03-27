@@ -109,7 +109,7 @@
         z-index: 1;
     }
     .modal-content {
-        width: 46%;
+        width: 60%;
         height: 600px;
         z-index: 1;
         margin: 0 auto;
