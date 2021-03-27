@@ -126,9 +126,9 @@
 
     .modal-content p {
         position: absolute;
-        width: 47%;
+        width: 60%;
         padding: 10px;
-        bottom: 120px;
+        bottom: 110px;
         text-align: center;
     }
 
