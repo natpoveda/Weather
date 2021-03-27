@@ -128,7 +128,7 @@
         position: absolute;
         width: 47%;
         padding: 10px;
-        bottom: 148px;
+        bottom: 120px;
         text-align: center;
     }
 
