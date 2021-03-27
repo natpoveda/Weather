@@ -12,22 +12,21 @@
     function getCurrent(place) {
         tipo = place;
         superFetch(
-            `https://api.ipgeolocation.io/astronomy?apiKey=${API_KEY}&location=${texto}`
+            `https://api.ipgeolocation.io/astronomy?apiKey=${API_KEY}&location=${texto}&lang=es`
         ).then(getDatos);
     }
 
     function getDatos(data) {
-        localStorage.setItem('valueText',JSON.stringify({texto,tipo}));
+        localStorage.setItem('valueText', JSON.stringify({ texto, tipo }));
         dispatch('searchMode', { ...data, tipo, texto });
     }
 
-    function handleChange(){
+    function handleChange() {
         clase = 'nvisible';
     }
 </script>
 
 <div class="search">
-
     <div class="ingreso">
         <input
             type="Text"
@@ -39,8 +38,10 @@
     {#if valores}
         <div class="modal-back {clase}" on:click={handleChange}>
             <div class="modal-content">
-                <img src="images/source.gif" alt="Bienvenido">
-            <p> Guardamos tu última búsqueda. Anteriormente buscaste {valores.texto}</p>
+                <img src="images/source.gif" alt="Bienvenido" />
+                <p>
+                    Te ahorramos tiempo. Anteriormente buscaste {valores.texto}
+                </p>
             </div>
         </div>
     {/if}
@@ -49,16 +50,18 @@
         on:click={() => {
             getCurrent('country');
         }}
-        class="btn-search">
-        <img src="images/iconPais.svg" alt="Country Button"/>
+        class="btn-search"
+    >
+        <img src="images/iconPais.svg" alt="Country Button" />
         País</button
     >
     <button
         on:click={() => {
             getCurrent('city');
         }}
-        class="btn-search">
-        <img src="images/iconCiudad.svg" alt="City Button"/>
+        class="btn-search"
+    >
+        <img src="images/iconCiudad.svg" alt="City Button" />
         Ciudad</button
     >
 </div>
@@ -87,14 +90,12 @@
         box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
         border: solid 1px #707070;
         background-color: #afafaf;
-        display:flex;
+        display: flex;
         flex-direction: column;
         align-items: center;
         color: white;
         font-size: 25px;
-
     }
-
 
     .modal-back {
         width: 100%;
@@ -119,11 +120,11 @@
         display: flex;
     }
 
-    .modal-content img{
+    .modal-content img {
         position: absolute;
     }
 
-    .modal-content p{
+    .modal-content p {
         position: absolute;
         width: 47%;
         padding: 10px;
@@ -131,7 +132,7 @@
         text-align: center;
     }
 
-    .nvisible{
-        display:none;
+    .nvisible {
+        display: none;
     }
 </style>

@@ -47,6 +47,7 @@ export function getEvento(meridiano, datos) {
 
 export function getModalData(meridiano, datos) {
     if (meridiano == 'AM') {
+        //Sol
         return {
             meridiano,
             hora: getHora(datos.date, datos.current_time, datos.on),
@@ -57,7 +58,6 @@ export function getModalData(meridiano, datos) {
             on: datos.on,
         };
     } else {
-        console.log('getEventoModal2', meridiano);
         //Luna
         return {
             meridiano,
@@ -72,6 +72,7 @@ export function getModalData(meridiano, datos) {
 }
 
 export function getObjectTextoModal(meridiano) {
+    //SOl
     if (meridiano == 'AM') {
         return {
             meridiano,

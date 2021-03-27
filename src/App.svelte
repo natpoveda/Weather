@@ -19,16 +19,16 @@
     function getCurrent() {
         value = localStorage.getItem('valueText');
         valores = JSON.parse(value);
-        texto = valores.texto;
-        console.log('VAL ', valores);
+
         if (value != null && value != '') {
             tipo = valores.tipo;
+            texto = valores.texto;
             superFetch(
-                `https://api.ipgeolocation.io/astronomy?apiKey=${API_KEY}&location=${texto}`
+                `https://api.ipgeolocation.io/astronomy?apiKey=${API_KEY}&location=${texto}&lang=es`
             ).then(getDatos);
         } else {
             superFetch(
-                `https://api.ipgeolocation.io/astronomy?apiKey=${API_KEY}`
+                `https://api.ipgeolocation.io/astronomy?apiKey=${API_KEY}&lang=es`
             ).then(getDatos);
         }
     }
