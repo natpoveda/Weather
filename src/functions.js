@@ -33,13 +33,11 @@ export function getFecha(fecha, hora) {
 
 export function getEvento(meridiano, datos) {
     if (meridiano == 'AM') {
-        console.log('getEvento1', meridiano);
         return {
             texto: 'Atardecer',
             hora: datos.sunset,
         };
     } else {
-        console.log('getEvento2', meridiano);
         return {
             texto: 'Amanecer',
             hora: datos.sunrise,
@@ -49,7 +47,6 @@ export function getEvento(meridiano, datos) {
 
 export function getModalData(meridiano, datos) {
     if (meridiano == 'AM') {
-        console.log('getEventoModal1', meridiano);
         return {
             meridiano,
             hora: getHora(datos.date, datos.current_time, datos.on),

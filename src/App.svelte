@@ -34,7 +34,6 @@
     }
 
     function getDatos(data) {
-        console.log('TIPO', tipo);
         datosWeather = { ...data, tipo, on, texto };
     }
 

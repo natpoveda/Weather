@@ -15,11 +15,9 @@
     let evento;
     let horaEvento;
 
-    console.log('DATOS WE', datosWe);
 
     $: if (datosWe && datosWe.date) {
         meridiano = getMeridiano(datosWe.date, datosWe.current_time);
-        console.log('MERIDIANO -->', meridiano);
         hora = getHora(datosWe.date, datosWe.current_time, datosWe.on);
         fecha = getFecha(datosWe.date, datosWe.current_time)
             .reverse()

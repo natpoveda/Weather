@@ -5,6 +5,7 @@
 
     let texto = '';
     let tipo = '';
+    let clase = '';
     let dispatch = createEventDispatcher();
     export let valores;
 
@@ -19,6 +20,10 @@
         localStorage.setItem('valueText',JSON.stringify({texto,tipo}));
         dispatch('searchMode', { ...data, tipo, texto });
     }
+
+    function handleChange(){
+        clase = 'nvisible';
+    }
 </script>
 
 <div class="search">
@@ -32,8 +37,11 @@
         />
     </div>
     {#if valores}
-        <div class="cvalores">
-            <p>Anteriormente buscaste el texto {valores.texto}</p>
+        <div class="modal-back {clase}" on:click={handleChange}>
+            <div class="modal-content">
+                <img src="images/source.gif" alt="Bienvenido">
+            <p> Guardamos tu última búsqueda. Anteriormente buscaste {valores.texto}</p>
+            </div>
         </div>
     {/if}
 
@@ -88,5 +96,42 @@
     }
 
 
+    .modal-back {
+        width: 100%;
+        height: 100%;
+        background-color: #363636;
+        position: fixed;
+        left: 0;
+        top: 0;
+        overflow: auto;
+        will-change: transform, opacity;
+        z-index: 1;
+    }
+    .modal-content {
+        width: 46%;
+        height: 600px;
+        z-index: 1;
+        margin: 0 auto;
+        padding: 6px 6.8px 0 0;
+        box-shadow: 8px 8px 15px 0 rgba(209, 209, 209, 0.29);
+        color: #fff;
+        font-size: 25px;
+        display: flex;
+    }
 
+    .modal-content img{
+        position: absolute;
+    }
+
+    .modal-content p{
+        position: absolute;
+        width: 47%;
+        padding: 10px;
+        bottom: 148px;
+        text-align: center;
+    }
+
+    .nvisible{
+        display:none;
+    }
 </style>
